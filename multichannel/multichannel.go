@@ -23,8 +23,6 @@ type Channel[T any] struct {
 	m sync.Mutex
 }
 
-//type Hoge[T any] *Listener[T]
-
 func New[T any]() *Channel[T] {
 	c := make(chan T)
 	l := list.New[*Listener[T]]()
@@ -52,7 +50,7 @@ func New[T any]() *Channel[T] {
 	}
 }
 
-func (c *Channel[T]) Listen() *Listener[T] {
+func (c *Channel[T]) Add() *Listener[T] {
 	c.m.Lock()
 	defer c.m.Unlock()
 
